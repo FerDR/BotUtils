@@ -4,6 +4,7 @@ from PIL import ImageFont
 from PIL import ImageDraw
 import facebook
 from pathlib import Path
+import numpy as np
 
 def get_font(size):
     try:#Linux
@@ -29,8 +30,12 @@ def get_wrapped_text(text,draw,maxlenx,maxleny):
     lines = 0
     for j in range(5):
         i = j + 1
-       font = get_fontsize(textwrap.fill(text,len(text)//i+i-1),draw,maxlenx,maxleny)
-       if font>size:
-           size = font
-           lines = i
-     return textwrap.fill(text,len(text)//lines+lines-1),size
+        font = get_fontsize(textwrap.fill(text,len(text)//i+i-1),draw,maxlenx,maxleny)
+        if font>size:
+            size = font
+            lines = i
+    return textwrap.fill(text,len(text)//lines+lines-1),size
+
+def getAccessToken(filename='access_token.txt'):
+    return Path(filename).read_text().strip()
+
