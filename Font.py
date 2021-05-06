@@ -35,7 +35,3 @@ def get_wrapped_text(text,draw,maxlenx,maxleny):
             size = font
             lines = i
     return textwrap.fill(text,len(text)//lines+lines-1),size
-
-def getAccessToken(filename='access_token.txt'):
-    return Path(filename).read_text().strip()
-
